@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="path/to/font-awesome/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="text/javascript">
+      function display_c() {
+        var refresh = 1000; // Refresh rate in milli seconds
+        mytime = setTimeout("display_ct()", refresh);
+      }
+
+      function display_ct() {
+        var x = new Date();
+        var x1 = x.getMonth() + 1 + "/" + x.getDate() + "/" + x.getFullYear();
+        x1 =
+          x1 +
+          " - " +
+          x.getHours() +
+          ":" +
+          x.getMinutes() +
+          ":" +
+          x.getSeconds();
+        document.getElementById("ct").innerHTML = x1;
+        display_c();
+      }
+    </script>
+    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-base.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://www.gstatic.com/charts/loader.js"
+    ></script>
+    <script type="text/javascript">
+      google.charts.load("current", { packages: ["line"] });
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn("number", "Day");
+        data.addColumn("number", "Độ ẩm đất");
+        data.addColumn("number", "Độ ẩm không khí");
+        data.addColumn("number", "Nhiệt độ");
+
+        data.addRows([
+          [1, 37.8, 80.8, 41.8],
+          [2, 30.9, 69.5, 32.4],
+          [3, 25.4, 57, 25.7],
+          [4, 11.7, 18.8, 10.5],
+          [5, 11.9, 17.6, 10.4],
+          [6, 8.8, 13.6, 7.7],
+          [7, 7.6, 12.3, 9.6],
+          [8, 12.3, 29.2, 10.6],
+          [9, 16.9, 42.9, 14.8],
+          [10, 12.8, 30.9, 11.6],
+          [11, 5.3, 7.9, 4.7],
+          [12, 6.6, 8.4, 5.2],
+          [13, 4.8, 6.3, 3.6],
+          [14, 4.2, 6.2, 3.4],
+        ]);
+
+        var options = {
+          chart: {
+            title: "Bảng đo các cảm biến",
+            subtitle: "",
+          },
+          width: 900,
+          height: 500,
+        };
+
+        var chart = new google.charts.Line(
+          document.getElementById("linechart_material")
+        );
+
+        chart.draw(data, google.charts.Line.convertOptions(options));
+      }
+    </script>
+    <title>Home page</title>
+  </head>
+  <body onload="display_ct();" style="overflow-y: auto">
+    <nav class="navbar navbar-expand-md bg">
+      <a href="" class="navbar-brand fs-3 ms-3 text-white">IoT_13.</a>
+      <span
+        id="ct"
+        class="justify-content-center"
+        style="color: white; width: 200px"
+      ></span>
+
+      <button
+        class="navbar-toggler me-3 text-white"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#btn"
+      >
+        <i class="bx bx-menu bx-md"></i>
+      </button>
+      <div class="collapse navbar-collapse ul-bg" id="btn">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a href="#" class="nav-link mx-3 text-white fs-5">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main>
+      <section id="LayThongTin">
+        <div class="inline-block">
+          <label for="">Độ ẩm đất: </label>
+        </div>
+        <div class="inline-block">
+          <label for="">Độ ẩm không khí: </label>
+        </div>
+        <div class="inline-block">
+          <label for="">Nhiệt độ: </label>
+        </div>
+      </section>
+      <!-- Dieu chinh do am dat -->
+
+      <section id="DieuChinh">
+        <div id="ThanhTruot">
+          <div class="doam">
+            <ul id="ul-thanhtruot">
+              <li>
+                <span for="">Độ ẩm:</span>
+              </li>
+              &nbsp &nbsp
+              <li>
+                <span id="rangeValue">0</span>
+              </li>
+            </ul>
+            <input
+              class="range"
+              type="range"
+              name=""
+              value="0"
+              min="0"
+              max="100"
+              onChange="rangeSlide(this.value)"
+              onmousemove="rangeSlide(this.value)"
+            />
+          </div>
+          <script type="text/javascript">
+            function rangeSlide(value) {
+              document.getElementById("rangeValue").innerHTML = value;
+            }
+          </script>
+        </div>
+        <div id="CongTac">
+          <ul id="ul-congtac">
+            <li>
+              <div id="CongTac1">
+                <!-- Rounded switch -->
+                <label for="">Chế độ tự động: </label>
+                <label class="switch custom-sw1">
+                  <input type="checkbox" />
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </li>
+            <li>
+              <div id="CongTac2">
+                <!-- Rounded switch -->
+                <label for="">Tưới cây: </label>
+                <label class="switch custom-sw2">
+                  <input type="checkbox" />
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="HenGio" class="container">
+        <table id="table-hengio" style="width: 100%">
+          <thead></thead>
+          <tbody>
+            <tr>
+              <th>Hẹn giờ</th>
+              <th></th>
+              <th>
+                <button id="button-add" class="btn">
+                  <i class="bx bx-plus-circle bx-font-size"></i>
+                </button>
+              </th>
+            </tr>
+            <tr>
+              <td>Giờ 1</td>
+              <td>Chế độ 1</td>
+              <td>
+                <button>
+                  <i class="bx bx-x-circle"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>Giờ 2</td>
+              <td>Chế độ 2</td>
+              <td>
+                <button>
+                  <i class="bx bx-x-circle"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="BieuDo">
+        <div
+          id="linechart_material"
+          style="width: 900px; height: 500px"
+          class="container chart-style"
+        ></div>
+      </section>
+    </main>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
