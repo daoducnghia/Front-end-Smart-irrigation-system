@@ -6,6 +6,9 @@ This is a mini-project Smart irrigration system build by a team students study I
 - HTML / CSS / JS
 - Java
 - Spring Boot framework
+## Contributors
+- Dao Duc Nghia
+- Do Van Quang
 ## Acknowledgments
 This is a mini project of a university student, so it is inevitable that there may be mistakes during the construction process. We welcome any feedback or comments.
 ## Examples 
