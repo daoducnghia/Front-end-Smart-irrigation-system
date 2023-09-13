@@ -2,8 +2,6 @@
 
 ## Introduction
 This is a mini-project Smart irrigration system while i study IOT at university.
-## How to use
-Run file application at IoT/src/main/java/org/o7planning/sbjdbc/
 ## Technologies used
 - HTML / CSS / JS
 - Java
