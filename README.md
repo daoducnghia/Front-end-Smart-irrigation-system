@@ -1,7 +1,7 @@
 # Website for Smart irrigration system
 
 ## Introduction
-This is a mini-project Smart irrigration system while i study IOT at university.
+This is a mini-project Smart irrigration system build by a team students study IOT at PTIT.
 ## Technologies used
 - HTML / CSS / JS
 - Java
